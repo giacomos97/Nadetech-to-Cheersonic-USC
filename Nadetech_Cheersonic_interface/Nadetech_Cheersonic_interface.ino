@@ -1,12 +1,21 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial Slave(11, 10); // Pin assignement
+// Arduino board pin assignement
+SoftwareSerial Slave(11, 10);     
 
+// Variable and buffer to collect incoming RS485 commands
 char val;
-char inputBuffer[20]; // Buffer for incoming commands
+char inputBuffer[20];           
+
+// Variables to trigger responses when RS485 command received
 int inputIndex = 0;
 bool commandReceived = false;
+
+// Track current ON/OFF state of the USC generator
 bool generatorEnabled = false;
+
+// Dummy responses to getSTATE request. 
+/* Refer to https://github.com/PiezoDrive/RS485-API/blob/master/README.md#get-amplifier-state */
 
 char dummyResponseDisabled[80] = {
   0, 0, 0, 0, 0, 0, 0, 0, // (enabled, phase tracking, etc.)
@@ -52,9 +61,8 @@ char dummyResponseEnabled[80] = {
 
 void setup() {
   
-  //Serial monitor
+  //Computer-Arduino interface
   Serial.begin(9600);
-  Serial.println("Serial intialised");
   
   //Arduino-Nadetech interface
   Slave.begin(9600);
@@ -72,41 +80,48 @@ void loop() {
   // Collect data from Slave into inputBuffer
   while (Slave.available()) {
     val = Slave.read();
+
     if (val == '\r') {
-      inputBuffer[inputIndex] = '\0'; // Null-terminate the string
-      commandReceived = true;
-      inputIndex = 0;
+      // Command received
+      inputBuffer[inputIndex] = '\0';   // Null-terminate the string
+      commandReceived = true;           // Trigger response via RS485
+      inputIndex = 0;                   // Reset input index counter
     } else {
+      // Command not received, contine recording in buffer
       inputBuffer[inputIndex++] = val;
     }
   }
 
-  // Process command if received
+  // Respond via RS485 if command received
   if (commandReceived) {
     delay(3); // "Allow 2.5 ms between commands"
 
     if (strcmp(inputBuffer, "getSTATE") == 0) {
-      
-      // Send dummy 80-byte response
+      // Respond to getSTATE request
+
       if (generatorEnabled){
-        Slave.write(dummyResponseEnabled, 80); // Return working enabled
+        // Send dummy 80-byte enabled response
+        Slave.write(dummyResponseEnabled, 80);
         Serial.println("Working enabled\r");
       }else{
-        Slave.write(dummyResponseDisabled, 80); // Return working disabled
+        // Send dummy 80-byte disabled response
+        Slave.write(dummyResponseDisabled, 80);
         Serial.println("Working disabled\r");
       }
 
-    } else if (strcmp(inputBuffer, "ENABLE") == 0) { // ENABLE command
-      generatorEnabled = true;
+    } else if (strcmp(inputBuffer, "ENABLE") == 0) {
+      // Respond to ENABLE request
+      generatorEnabled = true;  // Keep track of new state
       Slave.write("TRUE\r");
       Serial.println("Enabled\r");
       
-    } else if (strcmp(inputBuffer, "DISABLE") == 0) { // DISABLE command
-      generatorEnabled = false;
+    } else if (strcmp(inputBuffer, "DISABLE") == 0) {
+      // Respond to DISABLE request
+      generatorEnabled = false; // Keep track of new state
       Slave.write("TRUE\r");
       Serial.println("Disabled\r");    
     }
 
-    commandReceived = false;
+    commandReceived = false;  // Reset response trigger
   }
 }
