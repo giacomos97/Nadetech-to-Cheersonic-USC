@@ -1,7 +1,10 @@
 #include <SoftwareSerial.h>
 
 // Arduino board pin assignement
-SoftwareSerial Slave(11, 10);     
+SoftwareSerial Slave(11, 10);
+
+// MOSFET pin assignement
+const int mosfetPin = 9;
 
 // Variable and buffer to collect incoming RS485 commands
 char val;
@@ -61,6 +64,12 @@ char dummyResponseEnabled[80] = {
 
 void setup() {
   
+  // Initialize the MOSFET control pin
+  pinMode(mosfetPin, OUTPUT);
+
+  // Start with the Cheersonic generator off
+  digitalWrite(mosfetPin, LOW);
+
   //Computer-Arduino interface
   Serial.begin(9600);
   
@@ -110,12 +119,23 @@ void loop() {
       }
 
     } else if (strcmp(inputBuffer, "ENABLE") == 0) {
+
+      if (!generatorEnabled){
+        // Enable Cheersonic generator
+        digitalWrite(mosfetPin, HIGH);
+      }
       // Respond to ENABLE request
       generatorEnabled = true;  // Keep track of new state
       Slave.write("TRUE\r");
       Serial.println("Enabled\r");
       
     } else if (strcmp(inputBuffer, "DISABLE") == 0) {
+
+      if (generatorEnabled){
+        // Disable Cheersonic generator
+        digitalWrite(mosfetPin, LOW);
+      }
+
       // Respond to DISABLE request
       generatorEnabled = false; // Keep track of new state
       Slave.write("TRUE\r");
