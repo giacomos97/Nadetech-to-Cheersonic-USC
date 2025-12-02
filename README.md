@@ -14,7 +14,7 @@ This project provides guidance and detailed instructions for installation and us
 
 ## Setup Overview
 
-!\[Schematic overview of the standard and the new setups\](https://github.com/giacomos97/Nadetech-to-Cheersonic-USC/tree/main/resources/upgrade_overview.png)
+![Schematic overview of the standard and the new setups](./resources/upgrade_overview.png)
 
 ### Standard Setup
 
@@ -24,10 +24,6 @@ This project provides guidance and detailed instructions for installation and us
 
 * Computer -> Nadetech electronics -> Arduino -> Cheersonic USC generator -> Cheersonic nozzle.
 * The Arduino acts as an intermediary to facilitate communication between the Nadetech electronics and the Cheersonic USC generator.
-
-## Circuit Diagram
-
-!\[Schematic of electronic circuit\](https://github.com/giacomos97/Nadetech-to-Cheersonic-USC/tree/main/resources/schematic.png)
 
 The circuit diagram shows the connections between the Arduino, MOSFET, resistors, Cheersonic control line, and Nadetech RS485 interface. Key components include:
 
@@ -47,22 +43,34 @@ The circuit diagram shows the connections between the Arduino, MOSFET, resistors
 
 Consider the following bill of materials as reference for this project. Additionally, you will need to purchase a Cheersonic Ultrasonic Spray System UCA120 from your local reseller. Ensure that a 2-wire control line is provided with your purchase. Cheersonic will also provide a customized nozzle fixture to allow their nozzle to be installed on your Nadetech equipment. Please provide them with the necessary measurements.
 
+| Description                              | Manufacturer code | Quantity   |
+|------------------------------------------|-------------------|------------|
+| Arduino Uno Rev 3                        | A000066           | 1 unit     |
+| Breadboard for Pico Monk Makes           | SKU00089          | 1 unit     |
+| Seeed Studio Grove - RS485               | 103020193         | 1 unit     |
+| Jumper wires, male-male                  | 4110-40           | 20 units   |
+| RS PRO PCB Terminal Block                | 304-03-516        | 5 units    |
+| Power Supply for Arduino, 12 V, 1000 mA  |                   | 1 unit     |
+| 100 kΩ resistor                          |                   | 1 unit     |
+| 120 Ω resistor                           |                   | 1 unit     |
+| USB Cable for Arduino                    |                   | 1 unit     |
+| IRLZ44N MOSFET                           | IRLZ44NPBF        | 1 unit     |
 
-| **Description** | **RS Code** | **Manufacturer Code** | **Quantity** |
-| --- | --- | --- | --- |
-| Arduino Uno Rev 3 | 7154081 | A000066 | 1 unit |
-| Breadboard for Pico Monk Makes | 2222162 | SKU00089 | 1 unit |
-| Seeed Studio Grove - RS485 | 1887080 | 103020193 | 1 unit |
-| Jumper wires, male-male | 2048241 | 4110-40 | 20 unit |
-| RS PRO PCB Terminal Block | 7901098 |   | 5 units |
-| Power Supply for Arduino, 12 V, 1000 mA |   |   | 1 unit |
-| 100 kΩ resistor |   |   | 1 unit |
-| 120 Ω resistor |   |   | 1 unit |
-| USB Cable for Arduino |   |   | 1 unit |
-| IRLZ44N MOSFET |   |   | 1 unit |
 ## Installation
 
-Under construction.
+**Software**
+
+1. Connect the Arduino board to your computer via USB.
+
+2. Flash the [firmware](./Nadetech_Cheersonic_interface/Nadetech_Cheersonic_interface.ino) on your Arduino board.
+
+3. Your board is ready to be used. You will no longer need the USB interface, as power will be provided from the 12 V external supply.
+
+**Hardware**
+
+1. After flashing the Arduino firmware, connect the electrical components as represented in the following [circuit diagram](./resources/circuit_diagram.png).
+
+   ![Schematic of electronic circuit](./resources/schematic.png)
 
 ## Usage
 
@@ -70,4 +78,12 @@ Under construction.
 
 ## Contributing
 
-Under construction.
+We welcome any contributions, improvements, or bug reports to this project. Your input is valuable and helps improve the project for everyone.
+
+## Disclaimer
+
+Please note the following:
+
+- This project is not affiliated with Cheersonic or Nadetech.
+- Be aware of the potential consequences of this upgrade operation, as you may irreparably damage your equipment.
+- Perform any action at your own risk. Neither Cheersonic nor Nadetech is available to provide technical assistance for this project.
