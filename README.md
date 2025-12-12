@@ -39,38 +39,7 @@ The circuit diagram shows the connections between the Arduino, MOSFET, resistors
 * List of components required for the upgrade.
 * Installation and setup guides.
 
-## Bill of Materials
-
-Consider the following bill of materials as reference for this project. Additionally, you will need to purchase a Cheersonic Ultrasonic Spray System UCA120 from your local reseller. Ensure that a 2-wire control line is provided with your purchase. Cheersonic will also provide a customized nozzle fixture to allow their nozzle to be installed on your Nadetech equipment. Please provide them with the necessary measurements.
-
-| Description                              | Manufacturer code | Quantity   |
-|------------------------------------------|-------------------|------------|
-| Arduino Uno Rev 3                        | A000066           | 1 unit     |
-| Breadboard for Pico Monk Makes           | SKU00089          | 1 unit     |
-| Seeed Studio Grove - RS485               | 103020193         | 1 unit     |
-| Jumper wires, male-male                  | 4110-40           | 20 units   |
-| RS PRO PCB Terminal Block                | 304-03-516        | 5 units    |
-| Power Supply for Arduino, 12 V, 1000 mA  |                   | 1 unit     |
-| 100 kΩ resistor                          |                   | 1 unit     |
-| 120 Ω resistor                           |                   | 1 unit     |
-| USB Cable for Arduino                    |                   | 1 unit     |
-| IRLZ44N MOSFET                           | IRLZ44NPBF        | 1 unit     |
-
-## Installation
-
-**Software**
-
-1. Connect the Arduino board to your computer via USB.
-
-2. Flash the [firmware](./Nadetech_Cheersonic_interface/Nadetech_Cheersonic_interface.ino) on your Arduino board.
-
-3. Your board is ready to be used. You will no longer need the USB interface, as power will be provided from the 12 V external supply.
-
-**Hardware**
-
-1. After flashing the Arduino firmware, connect the electrical components as represented in the following [circuit diagram](./resources/circuit_diagram.png).
-
-   ![Schematic of electronic circuit](./resources/schematic.png)
+Under construction.
 
 ## Usage
 
