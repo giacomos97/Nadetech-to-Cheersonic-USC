@@ -2,6 +2,8 @@
 
 Hardware and software needed to upgrade a Nadetech Ultrasonic Spray Coater with Cheersonic components.
 
+Please refer to [this project's Wiki](https://github.com/giacomos97/Nadetech-to-Cheersonic-USC/wiki) for all the technical details and instructions.
+
 ## Description
 
 Nadetech no longer offers support for their ultrasonic spray coating equipment. If you have experienced failure of the ultrasonic nozzle components, you may consider replacing them with components from another manufacturer. This project aims to upgrade the ultrasonic generator and nozzle of a Nadetech Ultrasonic Spray Coater with Cheersonic components.
