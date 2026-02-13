@@ -71,7 +71,7 @@ void setup() {
   digitalWrite(mosfetPin, LOW);
 
   //Computer-Arduino interface
-  Serial.begin(9600);
+  //Serial.begin(9600);
   
   //Arduino-Nadetech interface
   Slave.begin(9600);
