@@ -14,39 +14,6 @@ The Nadetech electronics continuously communicates via the RS485 interface with 
 
 This project provides guidance and detailed instructions for installation and usage. The project involves replacing the existing PiezoDrive controller and nozzle with the Cheersonic system and includes detailed instructions for hardware and software upgrades, a list of components required for the upgrade, and installation and setup guides.
 
-## Setup Overview
-
-![Schematic overview of the standard and the new setups](./resources/upgrade_overview.png)
-
-### Standard Setup
-
-* Computer -> Nadetech electronics -> PiezoDrive USC generator -> Default Nadetech nozzle.
-
-### New Setup
-
-* Computer -> Nadetech electronics -> Arduino -> Cheersonic USC generator -> Cheersonic nozzle.
-* The Arduino acts as an intermediary to facilitate communication between the Nadetech electronics and the Cheersonic USC generator.
-
-The circuit diagram shows the connections between the Arduino, MOSFET, resistors, Cheersonic control line, and Nadetech RS485 interface. Key components include:
-
-* Arduino Uno
-* Breadboard
-* MOSFET (IRLZ44N)
-* Resistors (100 kohm and 120 ohm)
-* Connections to the Cheersonic control line and Nadetech RS485 interface.
-
-## Features
-
-* Detailed instructions for hardware and software upgrades.
-* List of components required for the upgrade.
-* Installation and setup guides.
-
-Under construction.
-
-## Usage
-
-Under construction.
-
 ## Contributing
 
 We welcome any contributions, improvements, or bug reports to this project. Your input is valuable and helps improve the project for everyone.
